@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>Salvo com sucesso!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Clínica salva com sucesso!</h1>
+    <p th:text="'Nome: ' + ${clinica.nome}" />
+    <p th:text="'Nome do convênio ' + ${clinica.nomeConvenio}" />
+    <p th:text="'Descricao: ' + ${clinica.descricao}" />
+    <p th:text="'Nome do médico: ' + ${clinica.nomeMedico}" />
+    <a href="/clinica/clinicas">Consultar as clínicas cadastradas</a>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>Pesquisa</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h2>Pesquisa de clínicas</h2>
+        <form action="#" th:action="@{/clinicas/filtro}" th:object="${filtro}" method="get">
+            <div class="wrap">
+                <div class="pesquisa">
+                    <input type="text" style="width: 200px;" placeholder="Nome da clínica" th:field="*{nome}">
+                    <input type="text" style="width: 200px;" placeholder="Nome do convênio" th:field="*{nomeConvenio}">
+                    <input type="text" style="width: 200px;" placeholder="Nome do médico" th:field="*{nomeMedico}">
+                    <button type="submit" class="btnPesquisa">
+                     Pesquisar
+                  </button>
+                </div>
+             </div>
+        </form>
+
+    <h1>Resultado:</h1>
+    <table>
+	   <th:block th:each="clinica : ${clinicas}">
+	      <tr>
+	         <td th:text="${clinica.nome}"></td>
+	         <td th:text="${clinica.nomeConvenio}"></td>
+	         <td th:text="${clinica.descricao}"></td>
+	         <td th:text="${clinica.nomeMedico}"></td>
+	      </tr>
+   		</th:block>
+	</table>
+	<br>
+	<br>
+	<a href="/clinica/new">Inserir nova clínica</a>
+</body>
+</html>
