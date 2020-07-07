@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>handling-form-submission</artifactId>
+	<artifactId>clinica-medica</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>handling-form-submission</name>
 	<description>Demo project for Spring Boot</description>

@@ -1,15 +1,23 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
-<head> 
+<head>
+    <!-- <link th:href="@{/styles/css/bootstrap.css}" rel="stylesheet" type="text/css" /> -->
+    <!-- <link th:href="@{/styles/css/clinica.css}" rel="stylesheet" type="text/css" /> -->
+    <link href="../static/styles/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../static/styles/css/clinica.css" rel="stylesheet" type="text/css" />
     <title>Salvo com sucesso!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<h1>Clínica salva com sucesso!</h1>
-    <p th:text="'Nome: ' + ${clinica.nome}" />
-    <p th:text="'Nome do convênio ' + ${clinica.nomeConvenio}" />
-    <p th:text="'Descricao: ' + ${clinica.descricao}" />
-    <p th:text="'Nome do médico: ' + ${clinica.nomeMedico}" />
-    <a href="/clinica/clinicas">Consultar as clínicas cadastradas</a>
+    <div class="container clinica-margin">
+        <div class="alert alert-success" role="alert">
+            <h2>Clínica salva com sucesso!</h2>
+        </div>
+        <p th:text="'Nome: ' + ${clinica.nome}"></p>
+        <p th:text="'Nome do convênio ' + ${clinica.nomeConvenio}"></p>
+        <p th:text="'Descricao: ' + ${clinica.descricao}"></p>
+        <p th:text="'Nome do médico: ' + ${clinica.nomeMedico}"></p>
+        <a href="/clinica/clinicas" class="btn btn-outline-primary link">Consultar as clínicas cadastradas</a>
+    </div>
 </body>
 </html>
