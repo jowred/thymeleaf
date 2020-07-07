@@ -1,37 +1,68 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
 <head> 
+    <link th:href="@{/styles/css/bootstrap.css}" rel="stylesheet" type="text/css" />
+   	<link th:href="@{/styles/css/clinica.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/styles/css/font-awesome.css}" rel="stylesheet" type="text/css" />
+    <!--
+    <link href="../static/styles/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../static/styles/css/clinica.css" rel="stylesheet" type="text/css" />
+    <link href="../static/styles/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="../static/styles/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+     -->
+
     <title>Pesquisa</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<h2>Pesquisa de clínicas</h2>
+    <div class="container clinica-margin">
+        <h2>Pesquisa de clínicas</h2>
         <form action="#" th:action="@{/clinicas/filtro}" th:object="${filtro}" method="get">
             <div class="wrap">
-                <div class="pesquisa">
-                    <input type="text" style="width: 200px;" placeholder="Nome da clínica" th:field="*{nome}">
-                    <input type="text" style="width: 200px;" placeholder="Nome do convênio" th:field="*{nomeConvenio}">
-                    <input type="text" style="width: 200px;" placeholder="Nome do médico" th:field="*{nomeMedico}">
-                    <button type="submit" class="btnPesquisa">
-                     Pesquisar
-                  </button>
+                <div class="row clinica-margin">
+                    <div class="col-md-3">
+                        <input class="form-control" type="text" placeholder="Nome da clínica" th:field="*{nome}">
+                    </div>
+                    <div class="col-md-3">
+                        <input class="form-control" type="text" placeholder="Nome do convênio" th:field="*{nomeConvenio}">
+                    </div>
+                    <div class="col-md-3">
+                        <input class="form-control" type="text" placeholder="Nome do médico" th:field="*{nomeMedico}">
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-secondary">Pesquisar</button>
+                    </div>
                 </div>
              </div>
         </form>
-
-    <h1>Resultado:</h1>
-    <table>
-	   <th:block th:each="clinica : ${clinicas}">
-	      <tr>
-	         <td th:text="${clinica.nome}"></td>
-	         <td th:text="${clinica.nomeConvenio}"></td>
-	         <td th:text="${clinica.descricao}"></td>
-	         <td th:text="${clinica.nomeMedico}"></td>
-	      </tr>
-   		</th:block>
-	</table>
-	<br>
-	<br>
-	<a href="/clinica/new">Inserir nova clínica</a>
+        <div class="tabela-resultados">
+            <h2>Resultado:</h2>
+        </div>
+        <!-- Tabela de referência para o HTML puro -->
+        <table class="table table-bordered table-striped col-md-12">
+            <tr class="table-clinica">
+                <th class="col-md-3" scope="col">Nome</th>
+                <th class="col-md-2" scope="col">Convênio</th>
+                <th class="col-md-4" scope="col">Descrição</th>
+                <th class="col-md-3" scope="col">Médico</th>
+                <th style="text-align: center;" colspan="2" scope="col">Opções</th>
+            </tr>
+            <th:block th:each="clinica : ${clinicas}">
+	            <tr>
+	                <td th:text="${clinica.nome}"></td>
+	                <td th:text="${clinica.nomeConvenio}"></td>
+	                <td th:text="${clinica.descricao}"></td>
+	                <td th:text="${clinica.nomeMedico}"></td>
+	                <td><a href="/clinica/clinicas" title="Editar" class="btn btn-info link"><i class="fa fa-pencil-square-o"></i></a></td>
+	                <td><a href="/clinica/clinicas" title="Excluir" class="btn btn-danger link"><i class="fa fa-trash"></i></a></td>
+	            </tr>
+	        </th:block>
+        </table>
+        <div class="row">
+            <div class="col-md-2">
+                <a href="/clinica/new" class="btn btn-outline-success link">Inserir nova clínica</a>    
+            </div>
+        </div>
+    </div>
 </body>
 </html>
