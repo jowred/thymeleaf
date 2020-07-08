@@ -4,14 +4,14 @@
     <link th:href="@{/styles/css/bootstrap.css}" rel="stylesheet" type="text/css" />
    	<link th:href="@{/styles/css/clinica.css}" rel="stylesheet" type="text/css" />
     <link th:href="@{/styles/css/font-awesome.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/img/health.ico}" rel="icon" />
     <!--
     <link href="../static/styles/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="../static/styles/css/clinica.css" rel="stylesheet" type="text/css" />
     <link href="../static/styles/css/font-awesome.css" rel="stylesheet" type="text/css">
-    <link href="../static/styles/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-     -->
+    -->
 
-    <title>Pesquisa</title>
+    <title>Pesquisa de clínicas</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
@@ -35,11 +35,16 @@
                 </div>
              </div>
         </form>
+        <div class="row clinica-margin">
+            <div class="col-md-2">
+                <a href="/clinica/new" class="btn btn-outline-success link" style="width: 180px;"><i class="fa fa-plus" ></i>
+                    Inserir nova clínica</a>    
+            </div>
+        </div>
         <div class="tabela-resultados">
             <h2>Resultado:</h2>
         </div>
-        <!-- Tabela de referência para o HTML puro -->
-        <table class="table table-bordered table-striped col-md-12">
+        <table th:if="${clinicas.size() > 0}" class="table table-bordered table-striped col-md-12">
             <tr class="table-clinica">
                 <th class="col-md-3" scope="col">Nome</th>
                 <th class="col-md-2" scope="col">Convênio</th>
@@ -53,15 +58,14 @@
 	                <td th:text="${clinica.nomeConvenio}"></td>
 	                <td th:text="${clinica.descricao}"></td>
 	                <td th:text="${clinica.nomeMedico}"></td>
-	                <td><a href="/clinica/clinicas" title="Editar" class="btn btn-info link"><i class="fa fa-pencil-square-o"></i></a></td>
-	                <td><a href="/clinica/clinicas" title="Excluir" class="btn btn-danger link"><i class="fa fa-trash"></i></a></td>
+	                <td><a th:href="@{'/clinicas/' + ${clinica.id}}" title="Editar" class="btn btn-info link"><i class="fa fa-pencil-square-o"></i></a></td>
+	                <td><a th:href="@{'/clinicas/' + ${clinica.id}}" title="Excluir" class="btn btn-danger link"><i class="fa fa-trash"></i></a></td>
 	            </tr>
 	        </th:block>
         </table>
-        <div class="row">
-            <div class="col-md-2">
-                <a href="/clinica/new" class="btn btn-outline-success link">Inserir nova clínica</a>    
-            </div>
+        <div th:unless="${clinicas.size() > 0}" class="alert alert-primary" role="alert">
+            <h2>Nada foi encontrado.<br></h2>
+            <h5>Sua busca não encontrou resultados ou não há clínicas cadastradas.</h5>
         </div>
     </div>
 </body>

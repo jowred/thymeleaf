@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import br.gov.sp.fatec.clinica.model.BusinessException;
 import br.gov.sp.fatec.clinica.model.ClinicaMedica;
 import br.gov.sp.fatec.clinica.service.ClinicaMedicaService;
 
@@ -27,9 +28,12 @@ public class ClinicaMedicaController {
 	@PostMapping("/new")
 	public String save(@ModelAttribute ClinicaMedica clinica, Model model) {
 		model.addAttribute("clinica", clinica);
-//		System.out.printf("Clínica Médica: %s", clinica);
-		service.saveOrUpdate(clinica);
-		return "salvo";
+		try {
+			service.saveOrUpdate(clinica);
+			return "salvo";
+		} catch (BusinessException be) {
+			return "erro";
+		}
 	}
 	
 	@GetMapping("/clinicas")

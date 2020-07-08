@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.gov.sp.fatec.clinica.model.BusinessException;
 import br.gov.sp.fatec.clinica.model.ClinicaMedica;
 import br.gov.sp.fatec.clinica.repository.ClinicaMedicaRepository;
 
@@ -14,7 +15,12 @@ public class ClinicaMedicaService {
 	@Autowired
 	private ClinicaMedicaRepository repository;
 	
-	public void saveOrUpdate(ClinicaMedica clinica) {
+	public void saveOrUpdate(ClinicaMedica clinica) throws BusinessException {
+		if (clinica == null || ((clinica.getNome() == null || clinica.getNome().trim().isEmpty())
+				&& (clinica.getNomeConvenio() == null || clinica.getNomeConvenio().trim().isEmpty())
+				&& (clinica.getNomeMedico() == null || clinica.getNomeMedico().trim().isEmpty()))) {
+			throw new BusinessException("Não é possível inserir uma clínica nova sem nome, nome do convênio e nome do médico.");
+		}
 		repository.save(clinica);
 	}
 
@@ -42,21 +48,21 @@ public class ClinicaMedicaService {
 			return this.findAll();
 		}
 		
-		if (clinica.getNome() != null && !clinica.getNome().isEmpty()) {
+		if (clinica.getNome() != null && !clinica.getNome().trim().isEmpty()) {
 			String nome = new StringBuilder("%").append(clinica.getNome().toLowerCase()).append("%").toString();
 			clinica.setNome(nome);
 		} else {
 			blankArgs++;
 		}
 		
-		if (clinica.getNomeConvenio() != null && !clinica.getNomeConvenio().isEmpty()) {
+		if (clinica.getNomeConvenio() != null && !clinica.getNomeConvenio().trim().isEmpty()) {
 			String nomeConvenio = new StringBuilder("%").append(clinica.getNomeConvenio().toLowerCase()).append("%").toString();
 			clinica.setNomeConvenio(nomeConvenio);
 		} else {
 			blankArgs++;
 		}
 		
-		if (clinica.getNomeMedico() != null && !clinica.getNomeMedico().isEmpty()) {
+		if (clinica.getNomeMedico() != null && !clinica.getNomeMedico().trim().isEmpty()) {
 			String nomeMedico = new StringBuilder("%").append(clinica.getNomeMedico().toLowerCase()).append("%").toString();
 			clinica.setNomeMedico(nomeMedico);
 		} else {
