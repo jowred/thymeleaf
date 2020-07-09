@@ -59,9 +59,13 @@ public class ClinicaMedicaController {
 	
 	@PostMapping("/clinicas/edit/{id}")
 	public String editOne(@PathVariable Long id, @ModelAttribute ClinicaMedica clinica, Model model) throws BusinessException {
-		model.addAttribute("clinica", clinica);
-		service.saveOrUpdate(clinica);
-		return "alterado";
+		try {
+			model.addAttribute("clinica", clinica);
+			service.saveOrUpdate(clinica);
+			return "alterado";
+		} catch (BusinessException be) {
+			return "erro-edit";
+		}
 	}
 	
 	@GetMapping("/clinicas/delete/{id}")
