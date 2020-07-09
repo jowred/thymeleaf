@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    
+    <link th:href="@{/styles/css/bootstrap.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/styles/css/clinica.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/styles/css/font-awesome.css}" rel="stylesheet" type="text/css" />
+     <link th:href="@{/img/health.ico}" rel="icon" />
+	<!--
+    <link href="../static/styles/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../static/styles/css/clinica.css" rel="stylesheet" type="text/css" />
+    <link href="../static/styles/css/font-awesome.css" rel="stylesheet" type="text/css">
+	-->
+	
+    <title>Não foi possível cadastrar</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div class="container clinica-margin">
+        <div class="alert alert-danger" role="alert">
+            <h2>Não foi possível cadastrar a clínica:<br></h2>
+            <h5>Nenhum campo foi preenchido.</h5>
+        </div>
+        <div class="row clinica-margin">
+            <div class="col-md-2">
+                <a href="/clinica/new" class="btn btn-outline-success link" style="width: 180px;"><i class="fa fa-plus" ></i>
+                    Inserir nova clínica</a>    
+            </div>
+            <div class="col-md-3">
+                <a href="/clinica/clinicas" class="btn btn-outline-primary link">Consultar as clínicas cadastradas</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

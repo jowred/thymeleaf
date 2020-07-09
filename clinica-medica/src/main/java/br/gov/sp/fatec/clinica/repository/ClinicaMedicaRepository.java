@@ -10,6 +10,9 @@ import br.gov.sp.fatec.clinica.model.ClinicaMedica;
 
 public interface ClinicaMedicaRepository extends JpaRepository<ClinicaMedica, Long> {
 
-	@Query(value = "SELECT cm FROM ClinicaMedica cm WHERE ((LOWER(cm.nome) LIKE COALESCE(:nome))) OR ((LOWER(cm.nomeConvenio) LIKE COALESCE(:nomeConvenio))) OR ((LOWER(cm.nomeMedico) LIKE COALESCE(:nomeMedico)))")
+	@Query(value = "SELECT cm FROM ClinicaMedica cm WHERE ((LOWER(cm.nome) LIKE COALESCE(:nome))) OR ((LOWER(cm.nomeConvenio) LIKE COALESCE(:nomeConvenio))) OR ((LOWER(cm.nomeMedico) LIKE COALESCE(:nomeMedico))) ORDER BY cm.nome ASC")
 	List<ClinicaMedica> findByNomeLikeAndNomeConvenioLikeAndNomeMedicoLike(@Param("nome") String nome, @Param("nomeConvenio") String nomeConvenio, @Param("nomeMedico") String nomeMedico);
+
+	List<ClinicaMedica> findAllByOrderByNome();
+	
 }

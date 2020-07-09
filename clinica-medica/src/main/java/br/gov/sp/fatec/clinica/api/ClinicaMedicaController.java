@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.gov.sp.fatec.clinica.model.BusinessException;
@@ -32,7 +33,7 @@ public class ClinicaMedicaController {
 			service.saveOrUpdate(clinica);
 			return "salvo";
 		} catch (BusinessException be) {
-			return "erro";
+			return "erro-form";
 		}
 	}
 	
@@ -48,6 +49,32 @@ public class ClinicaMedicaController {
 		model.addAttribute("filtro", new ClinicaMedica());
 		model.addAttribute("clinicas", service.findByNomeLikeAndNomeConvenioLikeAndNomeMedicoLike(clinica));
 		return "pesquisa";
+	}
+	
+	@GetMapping("/clinicas/{id}")
+	public String getOne(@PathVariable Long id, @ModelAttribute ClinicaMedica clinica, Model model) {
+		model.addAttribute("clinica", service.findById(id));
+        return "edit";
+    }
+	
+	@PostMapping("/clinicas/edit/{id}")
+	public String editOne(@PathVariable Long id, @ModelAttribute ClinicaMedica clinica, Model model) throws BusinessException {
+		model.addAttribute("clinica", clinica);
+		service.saveOrUpdate(clinica);
+		return "alterado";
+	}
+	
+	@GetMapping("/clinicas/delete/{id}")
+	public String getOneForDelete(@PathVariable Long id, @ModelAttribute ClinicaMedica clinica, Model model) {
+		model.addAttribute("clinica", service.findById(id));
+		return "delete";
+	}
+	
+	@PostMapping("/clinicas/delete/{id}")
+	public String deleteOne(@PathVariable Long id, @ModelAttribute ClinicaMedica clinica, Model model) {
+		model.addAttribute("clinica", clinica);
+		service.delete(clinica);
+		return "excluido";
 	}
 	
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <link th:href="@{/styles/css/bootstrap.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/styles/css/clinica.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/img/health.ico}" rel="icon" />
+    <!--
+    <link href="../static/styles/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../static/styles/css/clinica.css" rel="stylesheet" type="text/css" />
+    -->
+    <title>Excluir</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div class="container clinica-margin">
+	    <form action="#" th:action="@{'/clinicas/delete/' + ${clinica.id}}" th:object="${clinica}" method="post">
+	        <div class="alert alert-danger" role="alert">
+	            <h2>Deseja realmente excluir essa clínica?</h2>
+	        </div>
+	        <strong>Nome: </strong><p th:text="${clinica.nome}"></p>
+	        <strong>Nome do convênio: </strong><p th:text="${clinica.nomeConvenio}"></p>
+	        <strong>Descrição: </strong><p th:text="${clinica.descricao}"></p>
+	        <strong>Nome do médico:</strong><p th:text="${clinica.nomeMedico}"></p>
+	        <input class="btn btn-danger" type="submit" value="Excluir" />
+	        <a th:href="@{/clinicas}" class="btn btn-outline-secondary link">Cancelar</a>
+	    </form>
+    </div>
+</body>
+</html>

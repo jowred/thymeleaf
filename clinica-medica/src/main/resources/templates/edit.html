@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="pt-BR" xmlns:th="https://www.thymeleaf.org">
+<head>
+<link th:href="@{/styles/css/bootstrap.css}" rel="stylesheet" type="text/css" />
+<link th:href="@{/styles/css/clinica.css}" rel="stylesheet" type="text/css" />
+<link th:href="@{/img/health.ico}" rel="icon" />
+<!-- <link href="../static/styles/css/bootstrap.css" rel="stylesheet" type="text/css" /> -->
+<title th:text="'Editar - ' + ${clinica.nome}"></title>
+<!-- <title>Editar clínica</title> -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div class="container clinica-margin">
+		<div class="form-group col-md-12">
+			<h2>Edição de clínica médica</h2>
+		</div>
+		<form action="#" th:action="@{'/clinicas/edit/' + ${clinica.id}}" th:object="${clinica}" method="post">
+			<div class="form-group col-md-8">
+				<label for="nome">Nome:</label>
+				<input type="text" class="form-control" id="nome" name="nome" th:field="*{nome}"/>
+			</div>
+			<div class="form-group col-md-8">
+				<label for="nome_convenio">Nome do convênio:</label>
+				<input type="text" class="form-control" id="nome_convenio" name="nome_convenio" th:field="*{nomeConvenio}"/>
+			</div>
+			<div class="form-group col-md-8">
+				<label for="descricao">Descrição:</label>
+				<textarea class="form-control" id="descricao" name="descricao" rows="3" th:field="*{descricao}"></textarea>
+			</div>
+			<div class="form-group col-md-8">
+				<label for="nome_medico">Nome do médico:</label>
+				<input type="text" class="form-control" id="nome_medico" name="nome_medico" th:field="*{nomeMedico}"/>
+			</div>
+			<div class="form-group col-md-8">
+				<input class="btn btn-success" type="submit" value="Confirmar" />
+				<a th:href="@{'/clinicas'}" class="btn btn-outline-secondary link" style="width: 180px;">Cancelar</a>    
+			</div>
+		</form>
+	</div>
+</body>
+</html>

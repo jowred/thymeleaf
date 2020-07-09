@@ -33,7 +33,7 @@ public class ClinicaMedicaService {
 	}
 
 	public List<ClinicaMedica> findAll() {
-		return repository.findAll();
+		return repository.findAllByOrderByNome();
 	}
 	
 	public void saveAll(List<ClinicaMedica> clinicas) {

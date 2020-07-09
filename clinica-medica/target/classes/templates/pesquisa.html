@@ -44,12 +44,13 @@
         <div class="tabela-resultados">
             <h2>Resultado:</h2>
         </div>
-        <table th:if="${clinicas.size() > 0}" class="table table-bordered table-striped col-md-12">
+        <div class="table-responsive">
+			<table th:if="${clinicas.size() > 0}" class="table table-bordered table-striped col-md-12">
             <tr class="table-clinica">
-                <th class="col-md-3" scope="col">Nome</th>
-                <th class="col-md-2" scope="col">Convênio</th>
-                <th class="col-md-4" scope="col">Descrição</th>
-                <th class="col-md-3" scope="col">Médico</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Convênio</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Médico</th>
                 <th style="text-align: center;" colspan="2" scope="col">Opções</th>
             </tr>
             <th:block th:each="clinica : ${clinicas}">
@@ -59,10 +60,11 @@
 	                <td th:text="${clinica.descricao}"></td>
 	                <td th:text="${clinica.nomeMedico}"></td>
 	                <td><a th:href="@{'/clinicas/' + ${clinica.id}}" title="Editar" class="btn btn-info link"><i class="fa fa-pencil-square-o"></i></a></td>
-	                <td><a th:href="@{'/clinicas/' + ${clinica.id}}" title="Excluir" class="btn btn-danger link"><i class="fa fa-trash"></i></a></td>
+	                <td><a th:href="@{'/clinicas/delete/' + ${clinica.id}}" title="Excluir" class="btn btn-danger link"><i class="fa fa-trash"></i></a></td>
 	            </tr>
 	        </th:block>
-        </table>
+        </table>        
+        </div>
         <div th:unless="${clinicas.size() > 0}" class="alert alert-primary" role="alert">
             <h2>Nada foi encontrado.<br></h2>
             <h5>Sua busca não encontrou resultados ou não há clínicas cadastradas.</h5>
