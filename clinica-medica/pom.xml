@@ -9,10 +9,10 @@
 		<version>2.2.2.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
+	<groupId>br.gov.sp.fatec.clinica</groupId>
 	<artifactId>clinica-medica</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>handling-form-submission</name>
+	<name>clinica-medica</name>
 	<description>Cadastro de clínica médica com Thymeleaf e Spring Boot</description>
 
 	<properties>
