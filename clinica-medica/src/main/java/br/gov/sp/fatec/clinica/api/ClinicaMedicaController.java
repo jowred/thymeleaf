@@ -22,7 +22,6 @@ public class ClinicaMedicaController {
 	@GetMapping("/new")
 	public String initialize(Model model) {
 		model.addAttribute("clinica", new ClinicaMedica());
-		model.addAttribute("clinicas", service.findAll());
 		return "form";
 	}
 
