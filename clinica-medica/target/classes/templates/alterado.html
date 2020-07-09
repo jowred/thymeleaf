@@ -20,7 +20,7 @@
         <strong>Nome do convênio: </strong><p th:text="${clinica.nomeConvenio}"></p>
         <strong>Descrição: </strong><p th:text="${clinica.descricao}"></p>
         <strong>Nome do médico:</strong><p th:text="${clinica.nomeMedico}"></p>
-        <a href="/clinica/clinicas" class="btn btn-outline-primary link">Consultar as clínicas cadastradas</a>
+        <a th:href="@{/clinicas}" class="btn btn-outline-primary link">Consultar as clínicas cadastradas</a>
     </div>
 </body>
 </html>
